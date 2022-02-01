@@ -9,26 +9,17 @@ const Cart = (props) => {
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
 
-  const hasItems = cartCtx.items.length > 0; 
+  const hasItems = cartCtx.items.length > 0;
 
- const cartItemRemoveHandler = (id) => {};
+  const cartItemRemoveHandler = (id) => {
+    cartCtx.removeItem(id);
+  };
 
- const  cartItemAddHandler = (item) => {};
+  const cartItemAddHandler = (item) => {
+    cartCtx.addItem({...item,ammount:1})
+    // cartCtx.addItem({item})
 
-
-// const cartItemRemoveHandler;
-// const  cartItemAddHandler;
-
-
-
-
-  //   const cartItems = (
-  //     <ul className={classes['cart-items']}>
-  //       {[{ id: "c1", name: "Sushi", amount: 2, price: 12.99 }].map((item) => (
-  //         <li>{item.name}</li>
-  //       ))}
-  //     </ul>
-  //   );
+  }; 
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
@@ -56,7 +47,7 @@ const Cart = (props) => {
         <button className={classes["button--alt"]} onClick={props.onClose}>
           Close
         </button>
-       {hasItems &&  <button className={classes.button}>Order</button>}
+        {hasItems && <button className={classes.button}>Order</button>}
       </div>
     </Modal>
   );
